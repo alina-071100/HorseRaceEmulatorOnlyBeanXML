@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<beans xmlns="http://xmlns.jcp.org/xml/ns/javaee"-->
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee-->
+<!--                      http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd"-->
+<!--       bean-discovery-mode="all">-->
+<!--    <context:component-scan base-package="am.example"/>-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+        <context:component-scan base-package="am.example"/>
+
+
+    <bean name="horseService" class="am.example.horseEmulatorXml.service.HorseServiceImpl">
+        <constructor-arg name="horses" ref="horses"/>
+    </bean>
+    <bean name="raceService" class="am.example.horseEmulatorXml.service.RaceServiceImpl">
+        <property name="horseService" ref="horseService"/>
+    </bean>
+
+    <util:list id="horses" value-type="am.example.horseEmulatorXml.beans.Horse">
+        <ref bean="horse1"/>
+        <ref bean="horse2"/>
+        <ref bean="horse3"/>
+        <ref bean="horse4"/>
+        <ref bean="horse5"/>
+</util:list>
+
+    <bean name="horse1" class="am.example.horseEmulatorXml.beans.Horse">
+        <constructor-arg name="breed" value="arabic"/>
+        <constructor-arg name="raceNumber" value="1"/>
+        <constructor-arg name="rider" value="Ahmed"/>
+
+    </bean>
+
+    <bean name="horse2" class="am.example.horseEmulatorXml.beans.Horse">
+        <constructor-arg name="breed" value="England"/>
+        <constructor-arg name="raceNumber" value="2"/>
+        <constructor-arg name="rider" value="Tomy"/>
+    </bean>
+    <bean name="horse3" class="am.example.horseEmulatorXml.beans.Horse">
+        <constructor-arg name="breed" value="Scottish"/>
+        <constructor-arg name="raceNumber" value="3"/>
+        <constructor-arg name="rider" value="Jerry"/>
+    </bean>
+    <bean name="horse4" class="am.example.horseEmulatorXml.beans.Horse">
+        <constructor-arg name="breed" value="New Zealander"/>
+        <constructor-arg name="raceNumber" value="4"/>
+        <constructor-arg name="rider" value="Harry"/>
+    </bean>
+    <bean name="horse5" class="am.example.horseEmulatorXml.beans.Horse">
+        <constructor-arg name="breed" value="Poni"/>
+        <constructor-arg name="raceNumber" value="5"/>
+        <constructor-arg name="rider" value="Boni"/>
+
+    </bean>
+
+</beans>
